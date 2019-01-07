@@ -1,0 +1,2133 @@
+<wsdl:definitions xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://olmiesservice.utech.edu.jm/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://olmiesservice.utech.edu.jm/">
+    <wsdl:types>
+        <s:schema elementFormDefault="qualified" targetNamespace="http://olmiesservice.utech.edu.jm/">
+            <s:element name="AuthenticateUser">
+                <s:complexType/>
+            </s:element>
+            <s:element name="AuthenticateUserResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="AuthenticateUserResult" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="validateUser">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string"/>
+                        <s:element minOccurs="1" maxOccurs="1" name="userType" type="tns:UserType"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:simpleType name="UserType">
+                <s:restriction base="s:string">
+                    <s:enumeration value="Staff"/>
+                    <s:enumeration value="Student"/>
+                    <s:enumeration value="Executive"/>
+                </s:restriction>
+            </s:simpleType>
+            <s:element name="validateUserResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="validateUserResult" type="s:boolean"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allFaculties">
+                <s:complexType/>
+            </s:element>
+            <s:element name="allFacultiesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allFacultiesResult" type="tns:ArrayOfFacultyResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfFacultyResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="FacultyResult" nillable="true" type="tns:FacultyResult"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="FacultyResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="facultyCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="facultyName" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="allProgrammes">
+                <s:complexType/>
+            </s:element>
+            <s:element name="allProgrammesResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allProgrammesResult" type="tns:ArrayOfProgrammeResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfProgrammeResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="ProgrammeResult" nillable="true" type="tns:ProgrammeResult"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ProgrammeResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="programmeCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="programmeName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="SchoolCode" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="allProgrammesByFacultyCode">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allProgrammesByFacultyCodeResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allProgrammesByFacultyCodeResult" type="tns:ArrayOfProgrammeResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allProgrammesBySchoolCode">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allProgrammesBySchoolCodeResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allProgrammesBySchoolCodeResult" type="tns:ArrayOfProgrammeResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allSchools">
+                <s:complexType/>
+            </s:element>
+            <s:element name="allSchoolsResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allSchoolsResult" type="tns:ArrayOfSchoolResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfSchoolResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="SchoolResult" nillable="true" type="tns:SchoolResult"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="SchoolResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="schoolCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="schoolName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="facultyCode" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="allSchoolsByFacultyCode">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="facultyCode" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allSchoolsByFacultyCodeResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allSchoolsByFacultyCodeResult" type="tns:ArrayOfSchoolResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allSchoolsByProgrammeCode">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allSchoolsByProgrammeCodeResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allSchoolsByProgrammeCodeResult" type="tns:ArrayOfSchoolResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersByFacultyByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="facultyCode" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersByFacultyByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allLecturersByFacultyByAcademicPeriodResult" type="tns:ArrayOfLecturerResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfLecturerResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="LecturerResult" nillable="true" type="tns:LecturerResult"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="LecturerResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="NetworkUserName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="ISASUserName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="InUse" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="emailAddress" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="title" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="jobTitle" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="eve_typc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="schoolCode" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="allLecturersByProgrammeByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="programmeCode" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersByProgrammeByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allLecturersByProgrammeByAcademicPeriodResult" type="tns:ArrayOfLecturerResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersBySchoolCodeByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="schoolCode" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersBySchoolCodeByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allLecturersBySchoolCodeByAcademicPeriodResult" type="tns:ArrayOfLecturerResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturers">
+                <s:complexType/>
+            </s:element>
+            <s:element name="allLecturersResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allLecturersResult" type="tns:ArrayOfLecturerResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allLecturersByAcademicPeriodResult" type="tns:ArrayOfLecturerResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersByISASUserNameByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="ISASUsername" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersByISASUserNameByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allLecturersByISASUserNameByAcademicPeriodResult" type="tns:ArrayOfLecturerResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersByNetworkUserNameByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="NetworkUserName" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersByNetworkUserNameByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allLecturersByNetworkUserNameByAcademicPeriodResult" type="tns:ArrayOfLecturerResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersByUserNameByAcademicPeriodAdvanceFilter">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="NetworkUsername" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="ISASUsername" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="email" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersByUserNameByAcademicPeriodAdvanceFilterResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allLecturersByUserNameByAcademicPeriodAdvanceFilterResult" type="tns:ArrayOfLecturerResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allModulesByFacultyByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="facultyCode" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allModulesByFacultyByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allModulesByFacultyByAcademicPeriodResult" type="tns:ArrayOfModuleResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfModuleResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="ModuleResult" nillable="true" type="tns:ModuleResult"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ModuleResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="moduleCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="moduleName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="schoolCode" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="allModulesByProgrammeByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="programmeCode" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allModulesByProgrammeByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allModulesByProgrammeByAcademicPeriodResult" type="tns:ArrayOfModuleResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allModulesBySchoolByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="schoolCode" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allModulesBySchoolByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allModulesBySchoolByAcademicPeriodResult" type="tns:ArrayOfModuleResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allModulesByModuleCodeByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="moduleCode" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allModulesByModuleCodeByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allModulesByModuleCodeByAcademicPeriodResult" type="tns:ArrayOfModuleResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allModulesByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allModulesByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allModulesByAcademicPeriodResult" type="tns:ArrayOfModuleResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allCourseCodeForModulesByModuleCodeByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="moduleCode" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allCourseCodeForModulesByModuleCodeByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allCourseCodeForModulesByModuleCodeByAcademicPeriodResult" type="tns:ArrayOfProgrammeResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLessonTypeByModuleCodeByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="moduleCode" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLessonTypeByModuleCodeByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allLessonTypeByModuleCodeByAcademicPeriodResult" type="tns:ArrayOfLessonTypeResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfLessonTypeResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="LessonTypeResult" nillable="true" type="tns:LessonTypeResult"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="LessonTypeResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="lessonTypeCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="lessonTypeName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="moduleCode" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="allOccurrenceByModulesCodeByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="moduleCode" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allOccurrenceByModulesCodeByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allOccurrenceByModulesCodeByAcademicPeriodResult" type="tns:ArrayOfOccurrenceResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfOccurrenceResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="OccurrenceResult" nillable="true" type="tns:OccurrenceResult"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="OccurrenceResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="moduleCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="OccurrenceName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="lessonTypeName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="lessonTypeCode" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="allLecturersWithOccurrenceByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="lecturerCode" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersWithOccurrenceByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allLecturersWithOccurrenceByAcademicPeriodResult" type="tns:ArrayOfOccurrenceForLecturerResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfOccurrenceForLecturerResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="OccurrenceForLecturerResult" nillable="true" type="tns:OccurrenceForLecturerResult"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="OccurrenceForLecturerResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="ISASUserName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="NetworkUserName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="eva_type" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="OccurrenceName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="moduleCode" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="allLecturersWithOccurrenceByModulesCodeByLessonTypeByOccurrenceByAcademicPeriodBy">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="moduleCode" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="LessonTypeCode" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersWithOccurrenceByModulesCodeByLessonTypeByOccurrenceByAcademicPeriodByResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allLecturersWithOccurrenceByModulesCodeByLessonTypeByOccurrenceByAcademicPeriodByResult" type="tns:ArrayOfOccurrenceForLecturerResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersWithOccurrenceLessonTypeByModulesCodeByAcademicPeriodBy">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="moduleCode" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allLecturersWithOccurrenceLessonTypeByModulesCodeByAcademicPeriodByResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allLecturersWithOccurrenceLessonTypeByModulesCodeByAcademicPeriodByResult" type="tns:ArrayOfLecturerLessonTypeOccurrenceResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfLecturerLessonTypeOccurrenceResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="LecturerLessonTypeOccurrenceResult" nillable="true" type="tns:LecturerLessonTypeOccurrenceResult"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="LecturerLessonTypeOccurrenceResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="ISASUserName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="NetworkUserName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="eva_type" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="OccurrenceName" type="tns:ArrayOfString"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="LessonTypeName" type="tns:ArrayOfString"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="ArrayOfString">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="allStudentsWithOccurrenceByModuleCodeByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="mod_code" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentsWithOccurrenceByModuleCodeByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allStudentsWithOccurrenceByModuleCodeByAcademicPeriodResult" type="tns:ArrayOfStudentResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfStudentResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="StudentResult" nillable="true" type="tns:StudentResult"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="StudentResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="studentCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="studentCodeScjc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="enrollmentStatus" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="studentGender" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="emailAddress" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="title" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="academicLevel" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="firstName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="middleName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="lastName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="schoolCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="courseCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="facultyCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="OccurrenceName" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="allModuleBreakDownForStudentForAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="studentIDSCJ" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allModuleBreakDownForStudentForAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allModuleBreakDownForStudentForAcademicPeriodResult" type="tns:ArrayOfStudentModuleBreakDownResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfStudentModuleBreakDownResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="StudentModuleBreakDownResult" nillable="true" type="tns:StudentModuleBreakDownResult"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="StudentModuleBreakDownResult">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="LecturerUserName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="LessonTypeName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="LessonTypeCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="OccurrenceName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="moduleCode" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="moduleName" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="schoolCode" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="allModuleForStudentForAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="studentID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allModuleForStudentForAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allModuleForStudentForAcademicPeriodResult" type="tns:ArrayOfModuleResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentCourseByStudentIDAcdemicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="studentID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentCourseByStudentIDAcdemicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allStudentCourseByStudentIDAcdemicPeriodResult" type="tns:ArrayOfString"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentCourseByStudentIDAcademicYear">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="studentID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentCourseByStudentIDAcademicYearResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allStudentCourseByStudentIDAcademicYearResult" type="tns:ArrayOfString"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentCourseByStudentID">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="studentID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentCourseByStudentIDResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allStudentCourseByStudentIDResult" type="tns:ArrayOfString"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentsByID">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="studentID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentsByIDResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allStudentsByIDResult" type="tns:ArrayOfStudentResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentsByIDByAcademicYear">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="studentID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentsByIDByAcademicYearResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allStudentsByIDByAcademicYearResult" type="tns:ArrayOfStudentResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentsByIDByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="studentID" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentsByIDByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allStudentsByIDByAcademicPeriodResult" type="tns:ArrayOfStudentResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentsWithOccurrenceByModuleCodeByLessonTypeByOccurrenceNameByLecturerByAcademicPeriod">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="ayr_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="psl_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="mod_code" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="lessonType" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="occurrence" type="s:string"/>
+                        <s:element minOccurs="0" maxOccurs="1" name="lectrerISASUserName" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allStudentsWithOccurrenceByModuleCodeByLessonTypeByOccurrenceNameByLecturerByAcademicPeriodResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allStudentsWithOccurrenceByModuleCodeByLessonTypeByOccurrenceNameByLecturerByAcademicPeriodResult" type="tns:ArrayOfStudentResult"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allSCSCE">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="studentID" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="allSCSCEResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="allSCSCEResult" type="tns:ArrayOfSrs_sce"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:complexType name="ArrayOfSrs_sce">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="unbounded" name="srs_sce" nillable="true" type="tns:srs_sce"/>
+                </s:sequence>
+            </s:complexType>
+            <s:complexType name="srs_sce">
+                <s:sequence>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_scjc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_seq2" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_stuc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ayrc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_crsc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_blok" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_occl" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_cgpc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_fndc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_srtn" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_esb1" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_esb2" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_esb3" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ebal" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_styc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_moac" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_rftc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_fptc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_eflc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ssfc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_sttc" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_feed" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_stac" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_nayc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ncrc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_nblk" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_nocl" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_begd" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_endd" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_fstc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_efid" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_elsc" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_stld" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_isdy" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_fsfc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_rfvc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_sta1" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_pgsc" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_ccd1" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_crd1" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ecl1" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_ccd2" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_crd2" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ecl2" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_atno" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_rsyn" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_rstd" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_as1r" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_prgc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_rouc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_dptc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_resc" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_hesa" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_sfcc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ctyc" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_hrwk" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_wkyr" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_tothrs" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_lepd" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_phrs" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_shrs" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_asum" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_csum" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_wsum" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_wels" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_psum" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_elsy" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_cels" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_aody" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_reqd" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_nols" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_nhls" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_nals" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_facc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_recs" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_1str" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_2ndr" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_nact" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ytyp" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_ysdy" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_yprg" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_mhra" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_lrad" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_phra" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_moa1" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_sta2" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_prg1" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_rou1" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_btch" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udsc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ufip" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_dsba" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_adsb" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_efbc" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udf1" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udf2" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udf3" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udf4" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udf5" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udf6" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udf7" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udf8" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udf9" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udfa" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udfb" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udfc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udfd" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udfe" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udff" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udfg" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udfh" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udfi" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udfj" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_udfk" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_stad" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_scj1" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_cred" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_dsbd" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_ccd3" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_ccd4" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ecl3" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ecl4" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_crd3" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_crd4" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_elef" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_adsc" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_ircp" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_gin1" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_gin2" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_uncn" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_unqn" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_eldu" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_empr" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ttac" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_frn1" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_frn2" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_fpt2" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_aphr" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_ashr" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_areg" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_regd" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_sclc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_hcic" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_moad" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_ftea" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_fteb" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ftem" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_avgc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_itts" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_qtst" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_spfi" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_cdd1" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_cdd2" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_cdd3" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_redi" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_brid" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_cppc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_capc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_fsyn" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_sdyn" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_qenc" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_fst1" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_pace" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ini1" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_ini2" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="sce_sasd" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_scl1" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="sce_insc" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="SCE_HESD" nillable="true" type="s:dateTime"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="SCE_SFC1" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="SCE_FREG" type="s:string"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="SCE_GFEE" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="1" maxOccurs="1" name="SCE_NFEE" nillable="true" type="s:decimal"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="SCE_FWYN" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="SCE_FEPH" type="s:string"/>
+                    <s:element minOccurs="0" maxOccurs="1" name="SCE_VCRF" type="s:string"/>
+                </s:sequence>
+            </s:complexType>
+            <s:element name="allSCSCECount">
+                <s:complexType/>
+            </s:element>
+            <s:element name="allSCSCECountResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="1" maxOccurs="1" name="allSCSCECountResult" type="s:int"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+            <s:element name="HelloWorld">
+                <s:complexType/>
+            </s:element>
+            <s:element name="HelloWorldResponse">
+                <s:complexType>
+                    <s:sequence>
+                        <s:element minOccurs="0" maxOccurs="1" name="HelloWorldResult" type="s:string"/>
+                    </s:sequence>
+                </s:complexType>
+            </s:element>
+        </s:schema>
+    </wsdl:types>
+    <wsdl:message name="AuthenticateUserSoapIn">
+        <wsdl:part name="parameters" element="tns:AuthenticateUser"/>
+    </wsdl:message>
+    <wsdl:message name="AuthenticateUserSoapOut">
+        <wsdl:part name="parameters" element="tns:AuthenticateUserResponse"/>
+    </wsdl:message>
+    <wsdl:message name="validateUserSoapIn">
+        <wsdl:part name="parameters" element="tns:validateUser"/>
+    </wsdl:message>
+    <wsdl:message name="validateUserSoapOut">
+        <wsdl:part name="parameters" element="tns:validateUserResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allFacultiesSoapIn">
+        <wsdl:part name="parameters" element="tns:allFaculties"/>
+    </wsdl:message>
+    <wsdl:message name="allFacultiesSoapOut">
+        <wsdl:part name="parameters" element="tns:allFacultiesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allProgrammesSoapIn">
+        <wsdl:part name="parameters" element="tns:allProgrammes"/>
+    </wsdl:message>
+    <wsdl:message name="allProgrammesSoapOut">
+        <wsdl:part name="parameters" element="tns:allProgrammesResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allProgrammesByFacultyCodeSoapIn">
+        <wsdl:part name="parameters" element="tns:allProgrammesByFacultyCode"/>
+    </wsdl:message>
+    <wsdl:message name="allProgrammesByFacultyCodeSoapOut">
+        <wsdl:part name="parameters" element="tns:allProgrammesByFacultyCodeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allProgrammesBySchoolCodeSoapIn">
+        <wsdl:part name="parameters" element="tns:allProgrammesBySchoolCode"/>
+    </wsdl:message>
+    <wsdl:message name="allProgrammesBySchoolCodeSoapOut">
+        <wsdl:part name="parameters" element="tns:allProgrammesBySchoolCodeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allSchoolsSoapIn">
+        <wsdl:part name="parameters" element="tns:allSchools"/>
+    </wsdl:message>
+    <wsdl:message name="allSchoolsSoapOut">
+        <wsdl:part name="parameters" element="tns:allSchoolsResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allSchoolsByFacultyCodeSoapIn">
+        <wsdl:part name="parameters" element="tns:allSchoolsByFacultyCode"/>
+    </wsdl:message>
+    <wsdl:message name="allSchoolsByFacultyCodeSoapOut">
+        <wsdl:part name="parameters" element="tns:allSchoolsByFacultyCodeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allSchoolsByProgrammeCodeSoapIn">
+        <wsdl:part name="parameters" element="tns:allSchoolsByProgrammeCode"/>
+    </wsdl:message>
+    <wsdl:message name="allSchoolsByProgrammeCodeSoapOut">
+        <wsdl:part name="parameters" element="tns:allSchoolsByProgrammeCodeResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersByFacultyByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allLecturersByFacultyByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersByFacultyByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allLecturersByFacultyByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersByProgrammeByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allLecturersByProgrammeByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersByProgrammeByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allLecturersByProgrammeByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersBySchoolCodeByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allLecturersBySchoolCodeByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersBySchoolCodeByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allLecturersBySchoolCodeByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersSoapIn">
+        <wsdl:part name="parameters" element="tns:allLecturers"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersSoapOut">
+        <wsdl:part name="parameters" element="tns:allLecturersResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allLecturersByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allLecturersByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersByISASUserNameByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allLecturersByISASUserNameByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersByISASUserNameByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allLecturersByISASUserNameByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersByNetworkUserNameByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allLecturersByNetworkUserNameByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersByNetworkUserNameByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allLecturersByNetworkUserNameByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersByUserNameByAcademicPeriodAdvanceFilterSoapIn">
+        <wsdl:part name="parameters" element="tns:allLecturersByUserNameByAcademicPeriodAdvanceFilter"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersByUserNameByAcademicPeriodAdvanceFilterSoapOut">
+        <wsdl:part name="parameters" element="tns:allLecturersByUserNameByAcademicPeriodAdvanceFilterResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allModulesByFacultyByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allModulesByFacultyByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allModulesByFacultyByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allModulesByFacultyByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allModulesByProgrammeByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allModulesByProgrammeByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allModulesByProgrammeByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allModulesByProgrammeByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allModulesBySchoolByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allModulesBySchoolByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allModulesBySchoolByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allModulesBySchoolByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allModulesByModuleCodeByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allModulesByModuleCodeByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allModulesByModuleCodeByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allModulesByModuleCodeByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allModulesByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allModulesByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allModulesByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allModulesByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allCourseCodeForModulesByModuleCodeByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allCourseCodeForModulesByModuleCodeByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allCourseCodeForModulesByModuleCodeByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allCourseCodeForModulesByModuleCodeByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allLessonTypeByModuleCodeByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allLessonTypeByModuleCodeByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allLessonTypeByModuleCodeByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allLessonTypeByModuleCodeByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allOccurrenceByModulesCodeByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allOccurrenceByModulesCodeByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allOccurrenceByModulesCodeByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allOccurrenceByModulesCodeByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersWithOccurrenceByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allLecturersWithOccurrenceByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersWithOccurrenceByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allLecturersWithOccurrenceByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersWithOccurrenceByModulesCodeByLessonTypeByOccurrenceByAcademicPeriodBySoapIn">
+        <wsdl:part name="parameters" element="tns:allLecturersWithOccurrenceByModulesCodeByLessonTypeByOccurrenceByAcademicPeriodBy"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersWithOccurrenceByModulesCodeByLessonTypeByOccurrenceByAcademicPeriodBySoapOut">
+        <wsdl:part name="parameters" element="tns:allLecturersWithOccurrenceByModulesCodeByLessonTypeByOccurrenceByAcademicPeriodByResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersWithOccurrenceLessonTypeByModulesCodeByAcademicPeriodBySoapIn">
+        <wsdl:part name="parameters" element="tns:allLecturersWithOccurrenceLessonTypeByModulesCodeByAcademicPeriodBy"/>
+    </wsdl:message>
+    <wsdl:message name="allLecturersWithOccurrenceLessonTypeByModulesCodeByAcademicPeriodBySoapOut">
+        <wsdl:part name="parameters" element="tns:allLecturersWithOccurrenceLessonTypeByModulesCodeByAcademicPeriodByResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentsWithOccurrenceByModuleCodeByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allStudentsWithOccurrenceByModuleCodeByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentsWithOccurrenceByModuleCodeByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allStudentsWithOccurrenceByModuleCodeByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allModuleBreakDownForStudentForAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allModuleBreakDownForStudentForAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allModuleBreakDownForStudentForAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allModuleBreakDownForStudentForAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allModuleForStudentForAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allModuleForStudentForAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allModuleForStudentForAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allModuleForStudentForAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentCourseByStudentIDAcdemicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allStudentCourseByStudentIDAcdemicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentCourseByStudentIDAcdemicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allStudentCourseByStudentIDAcdemicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentCourseByStudentIDAcademicYearSoapIn">
+        <wsdl:part name="parameters" element="tns:allStudentCourseByStudentIDAcademicYear"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentCourseByStudentIDAcademicYearSoapOut">
+        <wsdl:part name="parameters" element="tns:allStudentCourseByStudentIDAcademicYearResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentCourseByStudentIDSoapIn">
+        <wsdl:part name="parameters" element="tns:allStudentCourseByStudentID"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentCourseByStudentIDSoapOut">
+        <wsdl:part name="parameters" element="tns:allStudentCourseByStudentIDResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentsByIDSoapIn">
+        <wsdl:part name="parameters" element="tns:allStudentsByID"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentsByIDSoapOut">
+        <wsdl:part name="parameters" element="tns:allStudentsByIDResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentsByIDByAcademicYearSoapIn">
+        <wsdl:part name="parameters" element="tns:allStudentsByIDByAcademicYear"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentsByIDByAcademicYearSoapOut">
+        <wsdl:part name="parameters" element="tns:allStudentsByIDByAcademicYearResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentsByIDByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allStudentsByIDByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentsByIDByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allStudentsByIDByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentsWithOccurrenceByModuleCodeByLessonTypeByOccurrenceNameByLecturerByAcademicPeriodSoapIn">
+        <wsdl:part name="parameters" element="tns:allStudentsWithOccurrenceByModuleCodeByLessonTypeByOccurrenceNameByLecturerByAcademicPeriod"/>
+    </wsdl:message>
+    <wsdl:message name="allStudentsWithOccurrenceByModuleCodeByLessonTypeByOccurrenceNameByLecturerByAcademicPeriodSoapOut">
+        <wsdl:part name="parameters" element="tns:allStudentsWithOccurrenceByModuleCodeByLessonTypeByOccurrenceNameByLecturerByAcademicPeriodResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allSCSCESoapIn">
+        <wsdl:part name="parameters" element="tns:allSCSCE"/>
+    </wsdl:message>
+    <wsdl:message name="allSCSCESoapOut">
+        <wsdl:part name="parameters" element="tns:allSCSCEResponse"/>
+    </wsdl:message>
+    <wsdl:message name="allSCSCECountSoapIn">
+        <wsdl:part name="parameters" element="tns:allSCSCECount"/>
+    </wsdl:message>
+    <wsdl:message name="allSCSCECountSoapOut">
+        <wsdl:part name="parameters" element="tns:allSCSCECountResponse"/>
+    </wsdl:message>
+    <wsdl:message name="HelloWorldSoapIn">
+        <wsdl:part name="parameters" element="tns:HelloWorld"/>
+    </wsdl:message>
+    <wsdl:message name="HelloWorldSoapOut">
+        <wsdl:part name="parameters" element="tns:HelloWorldResponse"/>
+    </wsdl:message>
+    <wsdl:portType name="OLMIESSERVICESoap">
+        <wsdl:operation name="AuthenticateUser">
+            <wsdl:input message="tns:AuthenticateUserSoapIn"/>
+            <wsdl:output message="tns:AuthenticateUserSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="validateUser">
+            <wsdl:input message="tns:validateUserSoapIn"/>
+            <wsdl:output message="tns:validateUserSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allFaculties">
+            <wsdl:input message="tns:allFacultiesSoapIn"/>
+            <wsdl:output message="tns:allFacultiesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allProgrammes">
+            <wsdl:input message="tns:allProgrammesSoapIn"/>
+            <wsdl:output message="tns:allProgrammesSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allProgrammesByFacultyCode">
+            <wsdl:input message="tns:allProgrammesByFacultyCodeSoapIn"/>
+            <wsdl:output message="tns:allProgrammesByFacultyCodeSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allProgrammesBySchoolCode">
+            <wsdl:input message="tns:allProgrammesBySchoolCodeSoapIn"/>
+            <wsdl:output message="tns:allProgrammesBySchoolCodeSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allSchools">
+            <wsdl:input message="tns:allSchoolsSoapIn"/>
+            <wsdl:output message="tns:allSchoolsSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allSchoolsByFacultyCode">
+            <wsdl:input message="tns:allSchoolsByFacultyCodeSoapIn"/>
+            <wsdl:output message="tns:allSchoolsByFacultyCodeSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allSchoolsByProgrammeCode">
+            <wsdl:input message="tns:allSchoolsByProgrammeCodeSoapIn"/>
+            <wsdl:output message="tns:allSchoolsByProgrammeCodeSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByFacultyByAcademicPeriod">
+            <wsdl:input message="tns:allLecturersByFacultyByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allLecturersByFacultyByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByProgrammeByAcademicPeriod">
+            <wsdl:input message="tns:allLecturersByProgrammeByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allLecturersByProgrammeByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersBySchoolCodeByAcademicPeriod">
+            <wsdl:input message="tns:allLecturersBySchoolCodeByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allLecturersBySchoolCodeByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturers">
+            <wsdl:input message="tns:allLecturersSoapIn"/>
+            <wsdl:output message="tns:allLecturersSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByAcademicPeriod">
+            <wsdl:input message="tns:allLecturersByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allLecturersByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByISASUserNameByAcademicPeriod">
+            <wsdl:input message="tns:allLecturersByISASUserNameByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allLecturersByISASUserNameByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByNetworkUserNameByAcademicPeriod">
+            <wsdl:input message="tns:allLecturersByNetworkUserNameByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allLecturersByNetworkUserNameByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByUserNameByAcademicPeriodAdvanceFilter">
+            <wsdl:input message="tns:allLecturersByUserNameByAcademicPeriodAdvanceFilterSoapIn"/>
+            <wsdl:output message="tns:allLecturersByUserNameByAcademicPeriodAdvanceFilterSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesByFacultyByAcademicPeriod">
+            <wsdl:input message="tns:allModulesByFacultyByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allModulesByFacultyByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesByProgrammeByAcademicPeriod">
+            <wsdl:input message="tns:allModulesByProgrammeByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allModulesByProgrammeByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesBySchoolByAcademicPeriod">
+            <wsdl:input message="tns:allModulesBySchoolByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allModulesBySchoolByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesByModuleCodeByAcademicPeriod">
+            <wsdl:input message="tns:allModulesByModuleCodeByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allModulesByModuleCodeByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesByAcademicPeriod">
+            <wsdl:input message="tns:allModulesByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allModulesByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allCourseCodeForModulesByModuleCodeByAcademicPeriod">
+            <wsdl:input message="tns:allCourseCodeForModulesByModuleCodeByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allCourseCodeForModulesByModuleCodeByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allLessonTypeByModuleCodeByAcademicPeriod">
+            <wsdl:input message="tns:allLessonTypeByModuleCodeByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allLessonTypeByModuleCodeByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allOccurrenceByModulesCodeByAcademicPeriod">
+            <wsdl:input message="tns:allOccurrenceByModulesCodeByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allOccurrenceByModulesCodeByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersWithOccurrenceByAcademicPeriod">
+            <wsdl:input message="tns:allLecturersWithOccurrenceByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allLecturersWithOccurrenceByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersWithOccurrenceByModulesCodeByLessonTypeByOccurrenceByAcademicPeriodBy">
+            <wsdl:input message="tns:allLecturersWithOccurrenceByModulesCodeByLessonTypeByOccurrenceByAcademicPeriodBySoapIn"/>
+            <wsdl:output message="tns:allLecturersWithOccurrenceByModulesCodeByLessonTypeByOccurrenceByAcademicPeriodBySoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersWithOccurrenceLessonTypeByModulesCodeByAcademicPeriodBy">
+            <wsdl:input message="tns:allLecturersWithOccurrenceLessonTypeByModulesCodeByAcademicPeriodBySoapIn"/>
+            <wsdl:output message="tns:allLecturersWithOccurrenceLessonTypeByModulesCodeByAcademicPeriodBySoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsWithOccurrenceByModuleCodeByAcademicPeriod">
+            <wsdl:input message="tns:allStudentsWithOccurrenceByModuleCodeByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allStudentsWithOccurrenceByModuleCodeByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allModuleBreakDownForStudentForAcademicPeriod">
+            <wsdl:input message="tns:allModuleBreakDownForStudentForAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allModuleBreakDownForStudentForAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allModuleForStudentForAcademicPeriod">
+            <wsdl:input message="tns:allModuleForStudentForAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allModuleForStudentForAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentCourseByStudentIDAcdemicPeriod">
+            <wsdl:input message="tns:allStudentCourseByStudentIDAcdemicPeriodSoapIn"/>
+            <wsdl:output message="tns:allStudentCourseByStudentIDAcdemicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentCourseByStudentIDAcademicYear">
+            <wsdl:input message="tns:allStudentCourseByStudentIDAcademicYearSoapIn"/>
+            <wsdl:output message="tns:allStudentCourseByStudentIDAcademicYearSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentCourseByStudentID">
+            <wsdl:input message="tns:allStudentCourseByStudentIDSoapIn"/>
+            <wsdl:output message="tns:allStudentCourseByStudentIDSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsByID">
+            <wsdl:input message="tns:allStudentsByIDSoapIn"/>
+            <wsdl:output message="tns:allStudentsByIDSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsByIDByAcademicYear">
+            <wsdl:input message="tns:allStudentsByIDByAcademicYearSoapIn"/>
+            <wsdl:output message="tns:allStudentsByIDByAcademicYearSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsByIDByAcademicPeriod">
+            <wsdl:input message="tns:allStudentsByIDByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allStudentsByIDByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsWithOccurrenceByModuleCodeByLessonTypeByOccurrenceNameByLecturerByAcademicPeriod">
+            <wsdl:input message="tns:allStudentsWithOccurrenceByModuleCodeByLessonTypeByOccurrenceNameByLecturerByAcademicPeriodSoapIn"/>
+            <wsdl:output message="tns:allStudentsWithOccurrenceByModuleCodeByLessonTypeByOccurrenceNameByLecturerByAcademicPeriodSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allSCSCE">
+            <wsdl:input message="tns:allSCSCESoapIn"/>
+            <wsdl:output message="tns:allSCSCESoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="allSCSCECount">
+            <wsdl:input message="tns:allSCSCECountSoapIn"/>
+            <wsdl:output message="tns:allSCSCECountSoapOut"/>
+        </wsdl:operation>
+        <wsdl:operation name="HelloWorld">
+            <wsdl:input message="tns:HelloWorldSoapIn"/>
+            <wsdl:output message="tns:HelloWorldSoapOut"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="OLMIESSERVICESoap" type="tns:OLMIESSERVICESoap">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="AuthenticateUser">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/AuthenticateUser" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="validateUser">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/validateUser" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allFaculties">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allFaculties" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allProgrammes">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allProgrammes" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allProgrammesByFacultyCode">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allProgrammesByFacultyCode" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allProgrammesBySchoolCode">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allProgrammesBySchoolCode" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allSchools">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allSchools" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allSchoolsByFacultyCode">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allSchoolsByFacultyCode" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allSchoolsByProgrammeCode">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allSchoolsByProgrammeCode" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByFacultyByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersByFacultyByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByProgrammeByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersByProgrammeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersBySchoolCodeByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersBySchoolCodeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturers">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturers" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByISASUserNameByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersByISASUserNameByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByNetworkUserNameByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersByNetworkUserNameByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByUserNameByAcademicPeriodAdvanceFilter">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersByUserNameByAcademicPeriodAdvanceFilter" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesByFacultyByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allModulesByFacultyByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesByProgrammeByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allModulesByProgrammeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesBySchoolByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allModulesBySchoolByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesByModuleCodeByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allModulesByModuleCodeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allModulesByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allCourseCodeForModulesByModuleCodeByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allCourseCodeForModulesByModuleCodeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLessonTypeByModuleCodeByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allLessonTypeByModuleCodeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allOccurrenceByModulesCodeByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allOccurrenceByModulesCodeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersWithOccurrenceByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersWithOccurrenceByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersWithOccurrenceByModulesCodeByLessonTypeByOccurrenceByAcademicPeriodBy">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersWithOccurrenceByModulesCodeByLessonTypeByOccurrenceByAcademicPeriodBy" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersWithOccurrenceLessonTypeByModulesCodeByAcademicPeriodBy">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersWithOccurrenceLessonTypeByModulesCodeByAcademicPeriodBy" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsWithOccurrenceByModuleCodeByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentsWithOccurrenceByModuleCodeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allModuleBreakDownForStudentForAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allModuleBreakDownForStudentForAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allModuleForStudentForAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allModuleForStudentForAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentCourseByStudentIDAcdemicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentCourseByStudentIDAcdemicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentCourseByStudentIDAcademicYear">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentCourseByStudentIDAcademicYear" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentCourseByStudentID">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentCourseByStudentID" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsByID">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentsByID" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsByIDByAcademicYear">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentsByIDByAcademicYear" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsByIDByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentsByIDByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsWithOccurrenceByModuleCodeByLessonTypeByOccurrenceNameByLecturerByAcademicPeriod">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentsWithOccurrenceByModuleCodeByLessonTypeByOccurrenceNameByLecturerByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allSCSCE">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allSCSCE" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allSCSCECount">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/allSCSCECount" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="HelloWorld">
+            <soap:operation soapAction="http://olmiesservice.utech.edu.jm/HelloWorld" style="document"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:binding name="OLMIESSERVICESoap12" type="tns:OLMIESSERVICESoap">
+        <soap12:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="AuthenticateUser">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/AuthenticateUser" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="validateUser">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/validateUser" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allFaculties">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allFaculties" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allProgrammes">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allProgrammes" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allProgrammesByFacultyCode">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allProgrammesByFacultyCode" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allProgrammesBySchoolCode">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allProgrammesBySchoolCode" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allSchools">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allSchools" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allSchoolsByFacultyCode">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allSchoolsByFacultyCode" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allSchoolsByProgrammeCode">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allSchoolsByProgrammeCode" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByFacultyByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersByFacultyByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByProgrammeByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersByProgrammeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersBySchoolCodeByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersBySchoolCodeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturers">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturers" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByISASUserNameByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersByISASUserNameByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByNetworkUserNameByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersByNetworkUserNameByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersByUserNameByAcademicPeriodAdvanceFilter">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersByUserNameByAcademicPeriodAdvanceFilter" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesByFacultyByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allModulesByFacultyByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesByProgrammeByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allModulesByProgrammeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesBySchoolByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allModulesBySchoolByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesByModuleCodeByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allModulesByModuleCodeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allModulesByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allModulesByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allCourseCodeForModulesByModuleCodeByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allCourseCodeForModulesByModuleCodeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLessonTypeByModuleCodeByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allLessonTypeByModuleCodeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allOccurrenceByModulesCodeByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allOccurrenceByModulesCodeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersWithOccurrenceByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersWithOccurrenceByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersWithOccurrenceByModulesCodeByLessonTypeByOccurrenceByAcademicPeriodBy">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersWithOccurrenceByModulesCodeByLessonTypeByOccurrenceByAcademicPeriodBy" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allLecturersWithOccurrenceLessonTypeByModulesCodeByAcademicPeriodBy">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allLecturersWithOccurrenceLessonTypeByModulesCodeByAcademicPeriodBy" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsWithOccurrenceByModuleCodeByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentsWithOccurrenceByModuleCodeByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allModuleBreakDownForStudentForAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allModuleBreakDownForStudentForAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allModuleForStudentForAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allModuleForStudentForAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentCourseByStudentIDAcdemicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentCourseByStudentIDAcdemicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentCourseByStudentIDAcademicYear">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentCourseByStudentIDAcademicYear" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentCourseByStudentID">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentCourseByStudentID" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsByID">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentsByID" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsByIDByAcademicYear">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentsByIDByAcademicYear" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsByIDByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentsByIDByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allStudentsWithOccurrenceByModuleCodeByLessonTypeByOccurrenceNameByLecturerByAcademicPeriod">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allStudentsWithOccurrenceByModuleCodeByLessonTypeByOccurrenceNameByLecturerByAcademicPeriod" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allSCSCE">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allSCSCE" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="allSCSCECount">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/allSCSCECount" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="HelloWorld">
+            <soap12:operation soapAction="http://olmiesservice.utech.edu.jm/HelloWorld" style="document"/>
+            <wsdl:input>
+                <soap12:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap12:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="OLMIESSERVICE">
+        <wsdl:port name="OLMIESSERVICESoap" binding="tns:OLMIESSERVICESoap">
+            <soap:address location="http://utech.edu.jm/olmieswebservice/olmiesservice.asmx"/>
+        </wsdl:port>
+        <wsdl:port name="OLMIESSERVICESoap12" binding="tns:OLMIESSERVICESoap12">
+            <soap12:address location="http://utech.edu.jm/olmieswebservice/olmiesservice.asmx"/>
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>
